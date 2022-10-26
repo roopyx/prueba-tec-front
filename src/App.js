@@ -43,7 +43,8 @@ const App = () => {
   if (plan) {
     return <Planificacion />
   }
-  else {
+  
+  if (!plan) {
     return (
       <>
       <Container>
@@ -90,9 +91,7 @@ const App = () => {
       </Container>
       </>
     )
-
   }
-
 }
 
 export default App
