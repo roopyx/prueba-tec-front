@@ -6,7 +6,7 @@ import Input from './componentes/Input';
 import Button from './componentes/Button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Planificacion from './componentes/Planificacion';
 
@@ -19,8 +19,8 @@ const App = () => {
   const navigate = useNavigate();
 
   const navigateToPlanificacion = () => {
-    navigate('/planificacion', {replace: true})
     setPlan(true);
+    navigate('/planificacion', {replace: true})
   }
 
   const handleSubmit = ({ expansion, fecha, destino, tonelaje }) => {
@@ -38,15 +38,14 @@ const App = () => {
 
   useEffect(() => {
     sendForm();
-  }, [form]);
+  }, [setForm]);
 
   if (plan) {
     return <Planificacion />
   }
   
-  if (!plan) {
+  if (form && plan !== true) {
     return (
-      <>
       <Container>
         <Section>
           <Formik
@@ -83,13 +82,9 @@ const App = () => {
           </Formik>
           <br />
           <Button onClick={navigateToPlanificacion}>Planificacion</Button>
-          <Routes>
-            <Route exact path="/planificacion" element={<Planificacion />} />
-          </Routes>
           {/* {balance !== '' ? <Balance>Balance final: {balance}</Balance> : null} */}
         </Section>
       </Container>
-      </>
     )
   }
 }
