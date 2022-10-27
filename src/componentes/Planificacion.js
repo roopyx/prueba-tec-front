@@ -40,18 +40,18 @@ const Planificacion = () => {
           onChange={handleChangeMes}
           label="Mes"
         >
-          <MenuItem value={'Enero'}>Enero</MenuItem>
-          <MenuItem value={'Febrero'}>Febrero</MenuItem>
-          <MenuItem value={'Marzo'}>Marzo</MenuItem>
-          <MenuItem value={'Abril'}>Abril</MenuItem>
-          <MenuItem value={'Mayo'}>Mayo</MenuItem>
-          <MenuItem value={'Junio'}>Junio</MenuItem>
-          <MenuItem value={'Julio'}>Julio</MenuItem>
-          <MenuItem value={'Agosto'}>Agosto</MenuItem>
-          <MenuItem value={'Septiembre'}>Septiembre</MenuItem>
-          <MenuItem value={'Octubre'}>Octubre</MenuItem>
-          <MenuItem value={'Noviembre'}>Noviembre</MenuItem>
-          <MenuItem value={'Diciembre'}>Diciembre</MenuItem>
+          <MenuItem value={'01'}>Enero</MenuItem>
+          <MenuItem value={'02'}>Febrero</MenuItem>
+          <MenuItem value={'03'}>Marzo</MenuItem>
+          <MenuItem value={'04'}>Abril</MenuItem>
+          <MenuItem value={'05'}>Mayo</MenuItem>
+          <MenuItem value={'06'}>Junio</MenuItem>
+          <MenuItem value={'07'}>Julio</MenuItem>
+          <MenuItem value={'08'}>Agosto</MenuItem>
+          <MenuItem value={'09'}>Septiembre</MenuItem>
+          <MenuItem value={'10'}>Octubre</MenuItem>
+          <MenuItem value={'11'}>Noviembre</MenuItem>
+          <MenuItem value={'12'}>Diciembre</MenuItem>
         </Select>
       </FormControl>
 
@@ -68,7 +68,7 @@ const Planificacion = () => {
           })}
         </Select>
       </FormControl>
-      <Calendar mes={mes} año={año} />
+      {mes & año ? <Calendar mes={mes} año={año} /> : ''}
     </div>
   );
 }
