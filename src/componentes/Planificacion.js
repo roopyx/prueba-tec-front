@@ -1,11 +1,14 @@
+import React from 'react';
 import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Calendar from './Calendar';
+import Button from './Button';
 
-const Planificacion = () => {
+const Planificacion = ({ setPlan }) => {
+
   const [mes, setMes] = useState('');
   const [año, setAño] = useState('');
 
@@ -21,6 +24,7 @@ const Planificacion = () => {
   };
 
   return (
+
     <div style={{
       textAlign: "center",
       maxWidth: "950px",
@@ -31,6 +35,7 @@ const Planificacion = () => {
     }}>
       
       <h2>Planificación mensual</h2>
+
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="mes-input-label">Mes</InputLabel>
         <Select
@@ -69,6 +74,8 @@ const Planificacion = () => {
         </Select>
       </FormControl>
       {mes & año ? <Calendar mes={mes} año={año} /> : ''}
+      <br/>
+      <Button onClick={() => setPlan('')}>Volver al formulario</Button>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import "@fullcalendar/core/main.cjs";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+
 import axios from "axios";
 
 const Calendar = ({ mes, año }) => {
@@ -16,6 +17,7 @@ const Calendar = ({ mes, año }) => {
   const events = [];
 
   let firstDaty = 1;
+  let initialDate = `${año}-${mes}-01`;
   
   const baseUrl = `http://127.0.0.1:5000/filter/date?mes=${mes}&año=${año}`;
 
@@ -39,16 +41,17 @@ const Calendar = ({ mes, año }) => {
 
   useEffect(() => {
     requestForms();
-  },[año]);
-
+  },[]);
+  
   return (
-      <FullCalendar
-        firstDay={firstDaty}
-        locale="es"
-        themeSystem="Simplex"
-        plugins={[dayGridPlugin]}
-        events={forms}
-      />
+    <FullCalendar
+      firstDay={firstDaty}
+      initialDate={initialDate}
+      locale="es"
+      themeSystem="Simplex"
+      plugins={[dayGridPlugin]}
+      events={forms}
+    />
   );
 }
 

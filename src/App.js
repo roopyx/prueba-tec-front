@@ -1,3 +1,4 @@
+import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Container from './componentes/Container';
@@ -12,6 +13,7 @@ import Planificacion from './componentes/Planificacion';
 const baseUrl = 'http://127.0.0.1:5000/new/form';
 
 const App = () => {
+
   const [form, setForm] = useState({})
   const [plan, setPlan] = useState(false)
 
@@ -19,27 +21,22 @@ const App = () => {
     setPlan(true);
   }
 
-  const handleSubmit = ({ expansion, fecha, destino, tonelaje }) => {
-    setForm({ expansion, fecha, destino, tonelaje });
-  }
-
   const sendForm = async () => {
     try {
-      const resp = await axios.post(baseUrl, form)
-      console.log(resp);
+      const resp = await axios.post(baseUrl, form);
+      console.log(resp)
     } catch (error) {
-      console.log(error);
+      console.error(error)
     }
   }
-
   useEffect(() => {
-    if (form !== '') {
+    if (form !== {}) {
       sendForm();
     }
   },[form]);
 
   if (plan) {
-    return <Planificacion />
+    return <Planificacion setPlan={setPlan} />
   }
   
   if (form && plan !== true) {
@@ -53,7 +50,10 @@ const App = () => {
               destino: '',
               tonelaje: '',
             }}
-            onSubmit={handleSubmit}
+            onSubmit={(values, { resetForm }) => {
+              setForm(values)
+              resetForm();
+            }}
             validationSchema={Yup.object({
               expansion: Yup
                 .string()
